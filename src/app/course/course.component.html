@@ -1,0 +1,97 @@
+
+<!-- -------------------------------------------------------------------------------------------------------------- -->
+<h1 class="text-center mt-5">{{this.course?.name}}</h1>
+
+<div class="row padding mt-4">
+    <div class="col-sm-12 col-md-6 text-center">
+        <img [src]="this.course?.img">
+        <h3>GENERAL RATING:</h3>
+        <star-rating  value="{{ this.course?.rating }}" totalstars="5" checkedcolor="gold" uncheckedcolor="black" size="40px" readonly="false"></star-rating>
+    </div>
+  
+  <div class="jumbotron col-sm-12 col-md-6">
+    <h3 class="text-center">ECTS: {{this.course?.ects}}</h3>
+    <h3 class="text-center">SEMESTER: {{this.course?.semester}}</h3>
+    <span *ngIf="this.course?.lecture">
+      <h3 class="text-center">LECTURE </h3>
+
+    </span>
+
+    <h3 *ngIf="this.course?.ex" class="text-center">EXERCISE </h3>
+    <h3 *ngIf="this.course?.labs" class="text-center">LABS </h3>
+    <h3 *ngIf="this.course?.proj" class="text-center">PROJECT </h3>
+    <h3 class="text-center">STUNDENTS: {{this.course?.students}}</h3>
+    <div class="row mt-4 justify-content-center">
+        <div *ngIf="this.signed">
+            <h3 >YOUR RATING:</h3>
+        <star-rating value="{{this.userRating}}"  totalstars="5" checkedcolor="gold" uncheckedcolor="black" 
+            size="40px" readonly="false" (rate)="addRate($event,this.course)"></star-rating>
+
+        </div>
+        
+          <button *ngIf="!this.signed" class="btn btn-large btn-block" [ngClass]="{ 'btn-success': this.canSign, 'btn-danger': !this.canSign }" (click)="signFor()">SIGN UP</button>
+    </div>
+  </div>
+</div>
+
+
+<button  *ngIf="this.isAdmin" class="btn btn-danger btn-large btn-block" data-toggle="collapse" data-target="#collapsibleDivChange">CHANGE COURSE DATA</button>
+
+    <div id="collapsibleDivChange" class="collapse container mt-4">
+        <div class="form-inline mt-2 row col-sm-12">
+            <label class="col-sm-4">NAME:</label>
+            <input class="form-control col-sm-4" type="text" #changeName>
+            <button class="btn btn-info btn-large col-sm-4" (click)="this.changeCourseName(changeName.value)">CHANGE</button>
+        </div>
+
+        <div class="form-inline mt-2  row col-sm-12">
+            <label class="col-sm-4">ECTS:</label>
+            <input class="form-control  col-sm-4" type="number" min="0" max="30" #changeECTS>
+            <button class="btn btn-info btn-large  col-sm-4" (click)="this.changeCourseECTS(changeECTS.value)">CHANGE</button>
+        </div>
+
+        <div class="form-inline mt-2  row col-sm-12">
+            <label class="col-sm-4">SEMESTER:</label>
+            <input class="form-control  col-sm-4" type="number" min="0" max="7" #changeSemester>
+            <button class="btn btn-info btn-large  col-sm-4" (click)="this.changeCourseSemester(changeSemester.value)">CHANGE</button>
+        </div>
+
+        
+
+        <div class="form-inline mt-2  row col-sm-12">
+            <label class="col-sm-4">STUDENTS:</label>
+            <input class="form-control  col-sm-4" type="number" min="0" #changeStudentsNumber>
+            <button class="btn btn-info btn-large  col-sm-4" (click)="this.changeCourseStudents(changeStudentsNumber.value)">CHANGE</button>
+        </div>
+
+        <div class="form-group mt-5  row col-sm-12">
+            <label class="col-sm-4">LECTURE: </label>                
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.lecture === true">YES</mark>
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.lecture === false">NO</mark>
+            <button class="btn btn-info btn-large  col-sm-4" (click)="this.changeCourseLecture()">CHANGE</button>
+        </div>
+
+        <div class="form-group mt-2  row col-sm-12">
+            <label class="col-sm-4">EXERCISE:  </label>               
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.ex === true">YES</mark>
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.ex === false">NO</mark>
+            
+            <button class="btn btn-info btn-large  col-sm-4" (click)="this.changeCourseEx()">CHANGE</button>
+        </div>
+
+        <div class="form-group mt-2  row col-sm-12">
+            <label class="col-sm-4">LABS:  </label>               
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.labs === true">YES</mark>
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.labs === false">NO</mark>
+            
+            <button class="btn btn-info btn-large   col-sm-4" (click)="this.changeCourseLabs()">CHANGE</button>
+        </div>
+
+        <div class="form-group mt-2  row col-sm-12">
+            <label class="col-sm-4">PROJECT:  </label>               
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.proj === true">YES</mark>
+                <mark class="col-sm-4 text-center" *ngIf="this.course?.proj === false">NO</mark>
+            
+            <button class="btn btn-info btn-large  col-sm-4" (click)="this.changeCourseProj()">CHANGE</button>
+        </div>
+    </div>

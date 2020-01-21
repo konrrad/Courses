@@ -1,0 +1,22 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <div class="mr-auto">
+    <a routerLink="/home" class="navbar-brand">
+      {{ appTitle }}
+    </a>
+  </div>
+<div *ngIf="(isLogged$ | async)">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div  class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
+    
+    <div  class="navbar-nav ml-auto">
+      <div id="hello" class="nav-item mx-auto nav-link text-primary">Hello, {{this.auth.user().email}}</div> 
+        <a  routerLink="/home" class="nav-item nav-link">Home</a>
+        <a (click)="logout()"  class="nav-item nav-link btn btn-danger ml-5" id="logout">LogOut</a>
+    </div>
+  </div>
+</div>
+</nav>

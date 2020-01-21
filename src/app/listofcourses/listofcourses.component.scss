@@ -1,0 +1,47 @@
+.course-view {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 40px;
+
+  
+    li {
+      padding: 2em;
+      border-radius: 4px;
+      margin-bottom: 7px;
+      display: grid;
+      grid-template-columns: 200px auto;
+  
+      a
+      {
+        text-decoration: none;
+  
+      }
+  
+      p {
+        font-weight: bold;
+        margin-left: 20px;
+        text-align: center;
+        font-size: 3rem;
+        color: black;
+        text-shadow: 4px 2px 4px rgba(30,9,206,0.77);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      }
+  
+      img {
+        border-radius: 50%;
+        width: 100%;
+      }
+  
+    }
+    .odd {
+        background: rgb(238, 238, 238);
+    }
+    .even {
+      
+      background: grey;
+    }
+  
+  }
+
+  

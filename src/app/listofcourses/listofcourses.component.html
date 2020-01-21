@@ -1,0 +1,34 @@
+<app-search-course></app-search-course>
+
+<ul class="course-view" *ngFor="let course of ( courses | coursePagination: this.actualPageNumber: this.getCoursesToDisplayNumber() ); let odd = odd; let even = even">
+  <li [ngClass]="{ odd: odd, even: even }">
+    <img [src]="course.img" />
+    <a routerLink="/details/{{ course?.$key }}">
+      <p>{{ course.name }}</p>
+    </a>
+    <button *ngIf="this.deleteButtonVisible" type="button" class="delete btn  btn-danger btn-sm" title="Delete Course" (click)="this.deleteCourse(course)">
+      delete
+    </button>
+  </li>
+</ul>
+
+<div class="row form-inline justify-content-md-center ">
+  <p class="pt-2 pr-1">View:</p>
+  <input class="col-2 form-control" #toDisplayInput (input)="this.setToDisplayNumber(toDisplayInput.value)">
+</div>
+
+
+
+<div class="container jumbotron"> 
+<ul class="pagination flex-wrap justify-content-md-center">
+  <li class="page-item"><a class="page-link" (click)="this.previousPage()">Poprzednia</a></li>
+
+  <li id="pageNumber" class="page-item" [ngClass]="{'active':i+1===this.actualPageNumber}" *ngFor="let item of emptyArrayToIterate(this.getNumberOfPages()); let i = index">
+    <a class="page-link"  (click)="this.setActualPageNumber(i+1)">{{ i+1 }}</a>
+  </li>
+
+  <li class="page-item"><a class="page-link" (click)="this.nextPage()">Następna</a></li>
+</ul>
+</div>
+
+<app-create-course *ngIf="this.deleteButtonVisible" id="createCourseForm" (courseEvent)="add($event)"></app-create-course>

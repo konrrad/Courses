@@ -1,0 +1,15 @@
+<h1 class="text-center mt-5">Welcome!</h1>
+<h2 class="ml-3">Log in or create an account.</h2>
+<div class="form-group">
+  <input class="form-control" placeholder="email" [(ngModel)]="credentials.email">
+</div>
+<div class="form-group">
+  <input class="form-control" type="password" placeholder="password" [(ngModel)]="credentials.password">
+</div>
+<button class="btn btn-primary btn-block btn-lg" (click)="login()">Login</button>
+<button class="btn btn-primary btn-block btn-lg" (click)="register()">Register</button>
+<div class="jumbotron" *ngIf="registered">
+  <h3 class="mt-4 text-center">Account Created!></h3>
+  <h3 class="mt-4 text-center">You can now log in.</h3>
+</div>
+
