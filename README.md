@@ -1,7 +1,8 @@
 # Courses
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
-Created with support of firebase RealTime Database.
+# Created with support of firebase RealTime Database.
+# See it live (https://stackblitz.com/github/konrrad/Courses)
 
 ## Development server
 
