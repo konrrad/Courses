@@ -39,6 +39,7 @@ export class AuthService {
 
   register({email,password}: Credentials)
   {
+    this.afAuth.auth.setPersistence("session");
     return this.afAuth.auth.createUserWithEmailAndPassword(email,password)
     .then(credential=>this.updateRegisteredUserData(credential.user));
   }

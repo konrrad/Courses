@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   register() {
     this.authService.register(this.credentials)
       .then(() => {this.registered = true; } )
-      . catch ((err) => {alert(err.message); });
+      . catch ((err) => {alert(err.message); }).then(()=>this.router.navigate(['/home']));
   }
 
 }
