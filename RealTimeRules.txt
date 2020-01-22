@@ -1,0 +1,29 @@
+RealTimeDatabaseRules
+
+
+{
+  "rules": {
+    ".read": true,
+    ".write": "root.child('users').child(auth.uid).child('roles').child('admin').val() === true",
+  
+    "courses": {
+      "$key": {
+        "rating": {
+          ".write": true
+        },
+        "ratenumber": {
+          ".write": true
+        },
+        "signedStudents": {
+          ".write": true
+        },
+      
+      ".write": "root.child('users').child(auth.uid).child('roles').child('admin').val() === true"
+      }
+    },
+    
+    "users": {
+      ".write": true
+    }
+  }
+}

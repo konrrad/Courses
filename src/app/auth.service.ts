@@ -34,7 +34,6 @@ export class AuthService {
   public getUserData()
   {
     return this.firebase.object(`/users/`+this.user().uid);
-    // return this.firebase.database.ref(`/users/`+this.user().uid+'/roles');
   }
 
   register({email,password}: Credentials)
